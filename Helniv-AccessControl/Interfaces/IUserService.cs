@@ -7,6 +7,10 @@ namespace Helniv_AccessControl.Interfaces
     {
         void CreateUser(CreateRequestModel userModel);
 
+        public User GetUserByLogin(string userLogin);
+
         IEnumerable<User> GetAllUsers();
+
+        public void UpdateUser(string userLogin, UpdateRequestModel userModel);
     }
 }

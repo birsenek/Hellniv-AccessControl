@@ -28,6 +28,15 @@ namespace Helniv_AccessControl.Controllers
             return Ok(users);
         }
 
+        [HttpGet("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult GetUserByLogin(string userLogin)
+        {
+            var user = _userService.GetUserByLogin(userLogin);
+            return Ok(user);
+        }
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -35,6 +44,15 @@ namespace Helniv_AccessControl.Controllers
         {
              _userService.CreateUser(userModel);
             return Ok(new { message = "Usuário criado com sucesso!" });
+        }
+
+        [HttpPut("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult UpdateUser(string userLogin, UpdateRequestModel userModel)
+        {
+            _userService.UpdateUser(userLogin, userModel);
+            return Ok(new { message = "Usuário atualizado com sucesso!" });
         }
     }    
 }
