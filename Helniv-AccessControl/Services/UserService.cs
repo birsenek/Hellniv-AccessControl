@@ -65,6 +65,14 @@ namespace Helniv_AccessControl.Service
             _context.Users.Update(user);
             _context.SaveChanges();
         }
+
+        public void DeleteUser(string userLogin)
+        {
+            var user = GetUserByLogin(userLogin);
+
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+        }
     }
 
 }

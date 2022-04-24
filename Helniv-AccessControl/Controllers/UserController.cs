@@ -54,5 +54,14 @@ namespace Helniv_AccessControl.Controllers
             _userService.UpdateUser(userLogin, userModel);
             return Ok(new { message = "Usuário atualizado com sucesso!" });
         }
+
+        [HttpDelete("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult DeleteUser(string userLogin)
+        {
+            _userService.DeleteUser(userLogin);
+            return Ok(new { message = "Usuário excluído com sucesso!" });
+        }
     }    
 }
