@@ -9,18 +9,18 @@ namespace Helniv_AccessControl.Service
 {
     public class UserService : IUserService
     {
-        private UserDbContext _context;
+        private HelnivDbContext _context;
         private Validation _validation;
         private readonly IMapper _mapper;
 
-        public UserService(UserDbContext context, IMapper mapper, Validation validation)
+        public UserService(HelnivDbContext context, IMapper mapper, Validation validation)
         {
             _context = context;
             _validation = validation;
             _mapper = mapper;
         }
 
-        public void CreateUser(CreateRequestModel userModel)
+        public void CreateUser(CreateRequestUserModel userModel)
         {
             if(!_validation.ValidateUniqueEmail(userModel.Email))
                 throw new Exception($"Já existe um usuário cadastrado com o email {userModel.Email}");
@@ -51,7 +51,7 @@ namespace Helniv_AccessControl.Service
             return user;
         }
 
-        public void UpdateUser(string userLogin, UpdateRequestModel userModel)
+        public void UpdateUser(string userLogin, UpdateRequestUserModel userModel)
         {
             if (!_validation.ValidateUniqueEmail(userModel.Email))
                 throw new Exception($"Já existe um usuário cadastrado com o email {userModel.Email}");

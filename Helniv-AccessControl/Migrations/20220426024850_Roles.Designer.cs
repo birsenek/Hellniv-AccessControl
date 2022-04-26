@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Helniv_AccessControl.Migrations
 {
     [DbContext(typeof(Utils.HelnivDbContext))]
-    [Migration("20220423012449_firstmigration")]
-    partial class firstmigration
+    [Migration("20220426024850_Roles")]
+    partial class Roles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,31 @@ namespace Helniv_AccessControl.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Helniv_AccessControl.Entities.Usuario", b =>
+            modelBuilder.Entity("Helniv_AccessControl.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("RoleConst")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("Helniv_AccessControl.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,10 +58,10 @@ namespace Helniv_AccessControl.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime>("DataInativacao")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateTime?>("DataInativacao")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()

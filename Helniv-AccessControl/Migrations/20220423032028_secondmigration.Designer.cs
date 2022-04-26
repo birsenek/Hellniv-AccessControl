@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Helniv_AccessControl.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(Utils.HelnivDbContext))]
     [Migration("20220423032028_secondmigration")]
     partial class secondmigration
     {

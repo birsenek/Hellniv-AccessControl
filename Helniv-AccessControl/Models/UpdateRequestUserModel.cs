@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace Helniv_AccessControl.Models
 {
-    public class CreateRequestModel
+    public class UpdateRequestUserModel
     {
         [Required]
         public string Nome { get; set; }
@@ -17,6 +16,5 @@ namespace Helniv_AccessControl.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
     }
 }

@@ -5,13 +5,13 @@ namespace Helniv_AccessControl.Interfaces
 {
     public interface IUserService
     {
-        public void CreateUser(CreateRequestModel userModel);
+        public void CreateUser(CreateRequestUserModel userModel);
 
         public User GetUserByLogin(string userLogin);
 
         IEnumerable<User> GetAllUsers();
 
-        public void UpdateUser(string userLogin, UpdateRequestModel userModel);
+        public void UpdateUser(string userLogin, UpdateRequestUserModel userModel);
 
         public void DeleteUser(string userLogin);
     }

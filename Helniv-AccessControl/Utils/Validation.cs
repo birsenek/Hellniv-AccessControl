@@ -2,16 +2,16 @@
 {
     public class Validation
     {
-        private UserDbContext _userDbContext;
+        private HelnivDbContext _userHelnivDbContext;
 
-        public Validation(UserDbContext userDbContext)
+        public Validation(HelnivDbContext userHelnivDbContext)
         {
-            _userDbContext = userDbContext;
+            _userHelnivDbContext = userHelnivDbContext;
         }
 
         public bool ValidateUniqueEmail(string userEmail)
         {
-            if (_userDbContext.Users.Any(x => x.Email == userEmail))
+            if (_userHelnivDbContext.Users.Any(x => x.Email == userEmail))
                 return false;
 
             return true;

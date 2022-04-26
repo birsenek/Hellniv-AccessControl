@@ -3,14 +3,15 @@ using Helniv_AccessControl.Entities;
 
 namespace Helniv_AccessControl.Utils
 {
-    public class UserDbContext : DbContext
+    public class HelnivDbContext : DbContext
     {
         protected readonly IConfiguration _configuration;
 
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
+        public HelnivDbContext(DbContextOptions<HelnivDbContext> options) : base(options)
         { 
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 }

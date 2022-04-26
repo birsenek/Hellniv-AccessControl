@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Helniv_AccessControl.Interfaces;
+﻿using Helniv_AccessControl.Interfaces;
 using Helniv_AccessControl.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,16 +6,15 @@ namespace Helniv_AccessControl.Controllers
 {
     [ApiController]
 
-    [Route("/users")]
+    [Route("api/[controller]")]
     public class UserController : Controller
     {
         private IUserService _userService;
-        private IMapper _mapper;
+        
 
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _mapper = mapper;
         }
 
         [HttpGet]
@@ -40,7 +38,7 @@ namespace Helniv_AccessControl.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateUser(CreateRequestModel userModel)
+        public IActionResult CreateUser(CreateRequestUserModel userModel)
         {
              _userService.CreateUser(userModel);
             return Ok(new { message = "Usuário criado com sucesso!" });
@@ -49,7 +47,7 @@ namespace Helniv_AccessControl.Controllers
         [HttpPut("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult UpdateUser(string userLogin, UpdateRequestModel userModel)
+        public IActionResult UpdateUser(string userLogin, UpdateRequestUserModel userModel)
         {
             _userService.UpdateUser(userLogin, userModel);
             return Ok(new { message = "Usuário atualizado com sucesso!" });

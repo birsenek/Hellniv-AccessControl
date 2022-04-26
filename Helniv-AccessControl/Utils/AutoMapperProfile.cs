@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Helniv_AccessControl.Entities;
 using Helniv_AccessControl.Models;
+using Helniv_AccessControl.Services;
 
 namespace Helniv_AccessControl.Utils
 {
@@ -8,9 +9,10 @@ namespace Helniv_AccessControl.Utils
     {
         public AutoMapperProfile()
         {
-            CreateMap<CreateRequestModel, User>();
+            CreateMap<CreateRequestUserModel, User>();
+            CreateMap<CreateRequestRoleModel, Role>();
 
-            CreateMap<UpdateRequestModel, User>()
+            CreateMap<UpdateRequestUserModel, User>()
                 .ForAllMembers(x => x.Condition(
                     (src, dest, prop) =>
                     {
