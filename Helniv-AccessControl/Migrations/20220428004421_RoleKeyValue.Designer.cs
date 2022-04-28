@@ -3,6 +3,7 @@ using System;
 using Helniv_AccessControl.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Helniv_AccessControl.Migrations
 {
     [DbContext(typeof(HelnivDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220428004421_RoleKeyValue")]
+    partial class RoleKeyValue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

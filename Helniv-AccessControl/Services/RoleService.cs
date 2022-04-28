@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Helniv_AccessControl.Entities;
 using Helniv_AccessControl.Interfaces;
+using Helniv_AccessControl.Models;
 using Helniv_AccessControl.Utils;
+using Microsoft.EntityFrameworkCore;
 
 namespace Helniv_AccessControl.Services
 {
@@ -30,6 +32,34 @@ namespace Helniv_AccessControl.Services
             role.Active = true;
 
             _context.Roles.Add(role);
+            _context.SaveChanges();
+        }
+
+        public Role GetRoleByConst(string constant)
+        {
+            var role = _context.Roles.AsNoTracking().Where(r => r.RoleConst.Equals(constant)).FirstOrDefault();
+            
+            if (role == null)
+                throw new KeyNotFoundException("Perfil não encontrado");
+
+            return role;
+
+        }
+
+        public void UpdateRole(string roleConst, UpdateRequestRoleModel roleModel)
+        {
+            var role = GetRoleByConst(roleConst);
+
+            _mapper.Map(roleModel, role);
+            _context.Update(role);
+            _context.SaveChanges();
+        }
+
+        public void DeleteRole(string roleConst)
+        {
+            var role = GetRoleByConst(roleConst);
+
+            _context.Remove(role);
             _context.SaveChanges();
         }
     }

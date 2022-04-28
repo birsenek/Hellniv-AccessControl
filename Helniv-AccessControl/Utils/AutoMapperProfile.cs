@@ -23,6 +23,16 @@ namespace Helniv_AccessControl.Utils
                         return true;
                     }
                     ));
+            CreateMap<UpdateRequestRoleModel, Role>()
+                .ForAllMembers(r => r.Condition(
+                    (src, dest, prop) =>
+                    {
+                        if (prop == null) return false;
+                        if (prop.GetType() == typeof(string) && string.IsNullOrEmpty((string)prop)) return false;
+
+                        return true;
+                    }
+                    ));
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Helniv_AccessControl.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Helniv_AccessControl.Entities
 {
     public class Role
     {

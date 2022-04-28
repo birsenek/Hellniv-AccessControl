@@ -46,7 +46,7 @@ namespace Helniv_AccessControl.Service
         {
             var user = _context.Users.AsNoTracking().Where(x => x.Login == userLogin).FirstOrDefault();
             if (user == null)
-                throw new KeyNotFoundException("Usuário não encontrad");
+                throw new KeyNotFoundException("Usuário não encontrado");
 
             return user;
         }
