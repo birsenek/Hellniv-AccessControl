@@ -73,6 +73,21 @@ namespace Helniv_AccessControl.Service
             _context.Users.Remove(user);
             _context.SaveChanges();
         }
+
+        public bool UserLogin(LoginRequestModel userLogin)
+        {
+            var user = _context.Users.AsNoTracking().Where(x => x.Login == userLogin.Login.Trim()).FirstOrDefault();
+
+            if (user == null)
+                throw new KeyNotFoundException("Usuário não encontrado");
+
+            var userpass = BCrypt.Net.BCrypt.Verify(userLogin.Password, user.Password);
+
+            if (string.IsNullOrEmpty(userLogin.Password) || !userpass)
+                throw new Exception("Senha Incorreta");
+
+            return true;
+        }
     }
 
 }

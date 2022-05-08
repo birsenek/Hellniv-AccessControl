@@ -14,5 +14,7 @@ namespace Helniv_AccessControl.Interfaces
         public void UpdateUser(string userLogin, UpdateRequestUserModel userModel);
 
         public void DeleteUser(string userLogin);
+
+        public bool UserLogin(LoginRequestModel userLogin);
     }
 }

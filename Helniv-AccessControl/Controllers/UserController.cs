@@ -61,5 +61,16 @@ namespace Helniv_AccessControl.Controllers
             _userService.DeleteUser(userLogin);
             return Ok(new { message = "Usuário excluído com sucesso!" });
         }
+
+
+        [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult UserLogin(LoginRequestModel userLogin)
+        {
+            var user = _userService.UserLogin(userLogin);
+            return Ok(user);
+        }
+
     }    
 }
