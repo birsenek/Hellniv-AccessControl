@@ -1,5 +1,6 @@
 ﻿using Helniv_AccessControl.Interfaces;
 using Helniv_AccessControl.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Helniv_AccessControl.Controllers
@@ -17,7 +18,7 @@ namespace Helniv_AccessControl.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GetAllUsers()
@@ -68,6 +69,9 @@ namespace Helniv_AccessControl.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult UserLogin(LoginRequestModel userLogin)
         {
+            if (string.IsNullOrEmpty(userLogin.Login))
+                return BadRequest("Usuário inválido");
+
             var user = _userService.UserLogin(userLogin);
             return Ok(user);
         }

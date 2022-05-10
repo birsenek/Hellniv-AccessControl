@@ -37,3 +37,10 @@ D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\obj\Debug\net6.0\re
 D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\obj\Debug\net6.0\Helniv-AccessControl.pdb
 D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\obj\Debug\net6.0\Helniv-AccessControl.genruntimeconfig.cache
 D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\obj\Debug\net6.0\ref\Helniv-AccessControl.dll
+D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Projetos\Helniv\Helniv-AccessControl\Helniv-AccessControl\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

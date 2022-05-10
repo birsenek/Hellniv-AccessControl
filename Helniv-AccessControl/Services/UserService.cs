@@ -4,6 +4,10 @@ using Helniv_AccessControl.Interfaces;
 using Helniv_AccessControl.Models;
 using Helniv_AccessControl.Utils;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Helniv_AccessControl.Service
 {
@@ -74,7 +78,7 @@ namespace Helniv_AccessControl.Service
             _context.SaveChanges();
         }
 
-        public bool UserLogin(LoginRequestModel userLogin)
+        public AuthenticatedResponse UserLogin(LoginRequestModel userLogin)
         {
             var user = _context.Users.AsNoTracking().Where(x => x.Login == userLogin.Login.Trim()).FirstOrDefault();
 
@@ -85,8 +89,22 @@ namespace Helniv_AccessControl.Service
 
             if (string.IsNullOrEmpty(userLogin.Password) || !userpass)
                 throw new Exception("Senha Incorreta");
+            else
+            {
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superScreteKey@123"));
+                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                var tokenOptions = new JwtSecurityToken(
+                        issuer: "https://localhost:7111",
+                        audience: "https://localhost:7111",
+                        claims: new List<Claim>(),
+                        expires: DateTime.Now.AddMinutes(5),
+                        signingCredentials: signinCredentials
+                    );
 
-            return true;
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
+                return new AuthenticatedResponse { Token = tokenString };
+            }
         }
     }
 
