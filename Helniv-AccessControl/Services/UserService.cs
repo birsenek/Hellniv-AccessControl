@@ -91,12 +91,17 @@ namespace Helniv_AccessControl.Service
                 throw new Exception("Senha Incorreta");
             else
             {
+                string name = "name";
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superScreteKey@123"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                var claims = new List<Claim>
+                {  
+                    new Claim(name, userLogin.Login)
+                };
                 var tokenOptions = new JwtSecurityToken(
                         issuer: "https://localhost:7111",
                         audience: "https://localhost:7111",
-                        claims: new List<Claim>(),
+                        claims: claims,
                         expires: DateTime.Now.AddMinutes(5),
                         signingCredentials: signinCredentials
                     );
