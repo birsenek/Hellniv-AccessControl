@@ -96,7 +96,8 @@ namespace Helniv_AccessControl.Service
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var claims = new List<Claim>
                 {  
-                    new Claim(name, userLogin.Login)
+                    new Claim(name, userLogin.Login),
+                    new Claim(ClaimTypes.Role, "Manager")
                 };
                 var tokenOptions = new JwtSecurityToken(
                         issuer: "https://localhost:7111",

@@ -36,7 +36,7 @@ namespace Helniv_AccessControl.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Manager")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult CreateUser(CreateRequestUserModel userModel)
