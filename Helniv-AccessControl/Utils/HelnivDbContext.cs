@@ -10,15 +10,7 @@ namespace Helniv_AccessControl.Utils
         public HelnivDbContext(DbContextOptions<HelnivDbContext> options) : base(options)
         { 
         }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.Entity<Role>()
-                .HasIndex(r => r.RoleConst)
-                .IsUnique();
-        }
-
+       
         public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
     }
 }

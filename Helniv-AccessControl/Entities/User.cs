@@ -15,6 +15,8 @@ namespace Helniv_AccessControl.Entities
 
         public string Email { get; set; }
 
+        public string Role { get; set; }
+
         public DateTime DataCriacao { get; set; }
 
         public bool Ativo { get; set; } 

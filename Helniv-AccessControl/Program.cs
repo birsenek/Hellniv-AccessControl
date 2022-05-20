@@ -1,6 +1,5 @@
 using Helniv_AccessControl.Interfaces;
 using Helniv_AccessControl.Service;
-using Helniv_AccessControl.Services;
 using Helniv_AccessControl.Utils;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +27,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<Validation>();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
