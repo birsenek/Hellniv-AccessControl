@@ -1,10 +1,12 @@
-﻿namespace Helniv_AccessControl.Utils
+﻿using Helniv_AccessControl.Utils;
+
+namespace Helniv_AccessControl.Services
 {
-    public class Validation
+    public class ValidationService
     {
         private HelnivDbContext _userHelnivDbContext;
 
-        public Validation(HelnivDbContext userHelnivDbContext)
+        public ValidationService(HelnivDbContext userHelnivDbContext)
         {
             _userHelnivDbContext = userHelnivDbContext;
         }

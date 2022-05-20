@@ -15,5 +15,7 @@ namespace Helniv_AccessControl.Models
         public string? Email { get; set; }
 
         public string? Ativo { get; set; }
+
+        public string? Role { get; set; }   
     }
 }

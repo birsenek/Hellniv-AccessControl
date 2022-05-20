@@ -4,23 +4,22 @@ using Helniv_AccessControl.Interfaces;
 using Helniv_AccessControl.Models;
 using Helniv_AccessControl.Utils;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
-namespace Helniv_AccessControl.Service
+namespace Helniv_AccessControl.Services
 {
     public class UserService : IUserService
     {
         private HelnivDbContext _context;
-        private Validation _validation;
+        private ValidationService _validation;
+        private AuthenticationService _authentication;
         private readonly IMapper _mapper;
 
-        public UserService(HelnivDbContext context, IMapper mapper, Validation validation)
+        public UserService(HelnivDbContext context, ValidationService validation,
+                AuthenticationService authentication, IMapper mapper)
         {
             _context = context;
             _validation = validation;
+            _authentication = authentication;
             _mapper = mapper;
         }
 
@@ -91,25 +90,7 @@ namespace Helniv_AccessControl.Service
                 throw new Exception("Senha Incorreta");
             else
             {
-                string name = "name";
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superScreteKey@123"));
-                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                var claims = new List<Claim>
-                {  
-                    new Claim(name, userLogin.Login),
-                    new Claim(ClaimTypes.Role, "Manager")
-                };
-                var tokenOptions = new JwtSecurityToken(
-                        issuer: "https://localhost:7111",
-                        audience: "https://localhost:7111",
-                        claims: claims,
-                        expires: DateTime.Now.AddMinutes(5),
-                        signingCredentials: signinCredentials
-                    );
-
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-
-                return new AuthenticatedResponse { Token = tokenString };
+               return _authentication.GenerateAuthenticationToken(user);
             }
         }
     }
