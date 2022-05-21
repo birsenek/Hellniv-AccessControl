@@ -17,7 +17,7 @@ namespace Helniv_AccessControl.Services
             var claims = new List<Claim>
                 {
                     new Claim(name, user.Login),
-                    new Claim(ClaimTypes.Role, "Manager")
+                    new Claim(ClaimTypes.Role, user.Role)
                 };
             var tokenOptions = new JwtSecurityToken(
                     issuer: "https://localhost:7111",
