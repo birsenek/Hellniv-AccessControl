@@ -23,7 +23,7 @@ namespace Helniv_AccessControl.Services
                     issuer: "https://localhost:7111",
                     audience: "https://localhost:7111",
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(5),
+                    expires: DateTime.Now.AddHours(4),
                     signingCredentials: signinCredentials
                 );
 
